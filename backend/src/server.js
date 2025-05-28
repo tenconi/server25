@@ -2,6 +2,7 @@ import express from 'express';
 import { __dirname } from './utils.js';
 import productsRouter from './routes/products.router.js';
 import usersRouter from './routes/users.router.js';
+import './persistence/mongoDB/mongoDB.js'; // Initialize MongoDB connection
 
 const app = express();
 

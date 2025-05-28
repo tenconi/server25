@@ -1,18 +1,14 @@
 import { Router } from "express";
 // import Class from Controllers
-import { getAllProducts, productById, createProduct } from "../controllers/products.controller.js";
+import UserController from "../controllers/users.controller.js";
 
 const router = Router();
 
-router.post('/add', createProduct)
-
-router.get('/', getAllProducts)
-
-router.get('/:prodId', productById)
-
-router.put('/edit', importClassFromController)
-
-router.delete('/delete', importClassFromController)
+router.get('/', UserController.getAll);
+router.get('/:id', UserController.getById);
+router.post('/', UserController.create);
+router.put('/:id', UserController.update);
+router.delete('/:id', UserController.delete);
 
 
 
