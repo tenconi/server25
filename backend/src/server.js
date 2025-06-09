@@ -2,6 +2,7 @@ import express from 'express';
 import { __dirname } from './utils.js';
 import productsRouter from './routes/products.router.js';
 import usersRouter from './routes/users.router.js';
+import viewsRouter from './routes/views.router.js';
 import './persistence/mongoDB/mongoDB.js'; // Initialize MongoDB connection
 
 const app = express();
@@ -15,6 +16,7 @@ app.use(express.static(__dirname + '/public'));
 
 
 // routes:
+app.use('/', viewsRouter)
 app.use('/products', productsRouter)
 app.use('/users', usersRouter)
 

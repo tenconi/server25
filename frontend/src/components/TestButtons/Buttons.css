@@ -1,0 +1,22 @@
+.fillBtn, .lineBtn{
+    width: 200px;
+    height: 50px;
+    border-radius: 5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    margin: 5px;
+}
+.fillBtn p, .lineBtn p{
+    margin: auto;
+}
+.fillBtn{
+    background: aquamarine;
+    border: solid 3px aqua;
+}
+.lineBtn{
+    background: none ;
+    border: solid 2px aqua;
+}
