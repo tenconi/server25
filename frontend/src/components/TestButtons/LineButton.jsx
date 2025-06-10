@@ -1,9 +1,9 @@
 import React from 'react'
 import './Buttons.css'
 
-const LineButton = ( ({legend, onClick}) => {
+const LineButton = ( ({legend, url}) => {
   return (
-    <button className='lineBtn' onClick={onClick}><p>{legend}</p></button>
+    <button className='lineBtn' onClick={() => window.location.href = url} ><p>{legend}</p></button>
   )
 })
 

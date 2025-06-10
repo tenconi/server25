@@ -1,22 +1,29 @@
-.fillBtn, .lineBtn{
-    width: 200px;
-    height: 50px;
-    border-radius: 5px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #333;
-    font-size: 16px;
-    text-align: center;
-    cursor: pointer;
-    margin: 5px;
+.fillBtn,
+.lineBtn {
+  width: 200px;
+  height: 50px;
+  border-radius: 5px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  margin: 5px;
 }
-.fillBtn p, .lineBtn p{
-    margin: auto;
+.fillBtn p,
+.lineBtn p {
+  margin: auto;
 }
-.fillBtn{
-    background: aquamarine;
-    border: solid 3px aqua;
+.fillBtn {
+  background: aquamarine;
+  border: solid 1px transparent;
+  color: #333;
 }
-.lineBtn{
-    background: none ;
-    border: solid 2px aqua;
+.lineBtn {
+  background: none;
+  border: solid 3px aquamarine;
+  color: #fff;
+}
+
+form {
+  font-size: 16px;
 }

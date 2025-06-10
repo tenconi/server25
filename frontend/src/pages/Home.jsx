@@ -1,4 +1,5 @@
 import React from 'react';
+import './styles.css'
 import FillButton from '../components/TestButtons/FillButton.jsx'
 import LineButton from '../components/TestButtons/LineButton.jsx';
 
@@ -9,13 +10,13 @@ const Home = () => {
 
 
 
-    <article className="">
+    <article className="login">
         <h3>Acces</h3>
         <p>Please access to your account.</p>
 
-    <FillButton legend="login" onClick={{}}/>
+    <FillButton legend="login" url={`http://localhost:3030/users/login`} />
     
-    <LineButton legend="register"  onClick={{}}/>
+    <LineButton legend="register"  url={`http://localhost:3030/users/register`} />
 
     </article>
 

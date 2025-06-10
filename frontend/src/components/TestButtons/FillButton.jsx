@@ -1,9 +1,9 @@
 import React from 'react'
 import './Buttons.css'
 
-const FillButton = (({legend, onClick}) => {
+const FillButton = (({legend, url}) => {
   return (
-    <button className='fillBtn' onClick={onClick} ><p>{legend}</p></button>
+    <button className='fillBtn' onClick={() => window.location.href = url} ><p>{legend}</p></button>
   )
 })
 

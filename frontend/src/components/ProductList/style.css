@@ -1,0 +1,9 @@
+.product-list .product-item::odd{
+background: rgba(127, 255, 212, 0.3);
+}
+.product-item{
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+}
