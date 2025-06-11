@@ -5,6 +5,7 @@ import './../TestButtons/Buttons.css'
 const AddProductForm = () => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
+  const [stock, setStock] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,6 +41,12 @@ const AddProductForm = () => {
         placeholder="Precio"
         value={price}
         onChange={(e) => setPrice(e.target.value)}
+      />
+      <input
+        type="number"
+        placeholder="Stock"
+        value={stock}
+        onChange={(e) => setStock(e.target.value)}
       />
       <button type="submit" className='fillBtn'>Agregar producto</button>
     </form>
