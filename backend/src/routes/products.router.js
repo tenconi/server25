@@ -5,8 +5,9 @@ import  ProductsController  from "../controllers/products.controller.js";
 const router = Router();
 const controller = new ProductsController();
 
-router.post('/', (req, res) => controller.create(req, res));
 router.get('/', (req, res) => controller.getAll(req, res));
+router.post('/', (req, res) => controller.create(req, res));
+
 
 // router.post('/', ProductsController.);
 // router.get('/', UserController.getAll);
@@ -16,4 +17,4 @@ router.get('/', (req, res) => controller.getAll(req, res));
 
 
 
-export default router;``
+export default router;

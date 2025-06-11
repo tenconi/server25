@@ -4,6 +4,7 @@ import productsRouter from './routes/products.router.js';
 import usersRouter from './routes/users.router.js';
 import viewsRouter from './routes/views.router.js';
 import './persistence/mongoDB/mongoDB.js'; // Initialize MongoDB connection
+import cors from 'cors'; // a peticion del front
 
 const app = express();
 
@@ -14,6 +15,8 @@ app.use(express.urlencoded({ extended: true }));
 // middleware "static" + dirname
 app.use(express.static(__dirname + '/public'));
 
+// 🔒 Habilitar CORS
+app.use(cors()); // 👈 Esto permite todas las conexiones desde cualquier origen
 
 // routes:
 app.use('/', viewsRouter)
