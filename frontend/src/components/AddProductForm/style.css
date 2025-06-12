@@ -1,0 +1,15 @@
+.addProductForm{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 40%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 1rem;
+}
+.addProductForm input{
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+}

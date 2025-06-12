@@ -9,3 +9,7 @@
     flex-wrap: wrap;
     gap: 16px;
 }
+.products > h2{
+    width: 100%;
+    padding: 0rem 2rem 1rem  
+}

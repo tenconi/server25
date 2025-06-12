@@ -1,54 +1,75 @@
-import React from 'react';
 import { useState } from 'react';
+import axios from 'axios';
 import './../TestButtons/Buttons.css' 
+import './style.css';
 
 const AddProductForm = () => {
-  const [name, setName] = useState('');
-  const [price, setPrice] = useState('');
-  const [stock, setStock] = useState('');
+  const [form, setForm] = useState({
+    name: '',
+    price: '',
+    stock: ''
+  });
+
+  const [message, setMessage] = useState('');
+
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await fetch('http://localhost:3030/products', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, price }),
+      // Objeto subido
+      const res = await axios.post('http://localhost:3030/products', {
+        prodName: form.name,
+        prodPrice: parseFloat(form.price),
+        prodStock: parseInt(form.stock)
       });
 
-      const data = await res.json();
-      console.log('Producto creado:', data);
-      setName('');
-      setPrice('');
+      setMessage('✅ Producto agregado correctamente');
+      setForm({ name: '', price: '', stock: '' });
     } catch (error) {
-      console.error('Error al crear producto:', error);
+      console.error('Error al agregar producto:', error);
+      setMessage('❌ Hubo un error al agregar el producto');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='addProductForm'>
+      <h2>Agregar Producto</h2>
+
       <input
         type="text"
+        name="name"
         placeholder="Nombre"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
+        value={form.name}
+        onChange={handleChange}
+        required
       />
       <input
         type="number"
+        name="price"
         placeholder="Precio"
-        value={price}
-        onChange={(e) => setPrice(e.target.value)}
+        value={form.price}
+        onChange={handleChange}
+        required
       />
       <input
         type="number"
+        name="stock"
         placeholder="Stock"
-        value={stock}
-        onChange={(e) => setStock(e.target.value)}
+        value={form.stock}
+        onChange={handleChange}
+        required
       />
-      <button type="submit" className='fillBtn'>Agregar producto</button>
+
+      <button type="submit" className='fillBtn'>Agregar</button>
+
+      {message && <p>{message}</p>}
     </form>
   );
 };

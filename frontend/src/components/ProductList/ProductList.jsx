@@ -18,7 +18,7 @@ const ProductList = () => {
         setError('No se pudieron cargar los productos');
         setLoading(false);
       });
-  }, []);
+  }, [products]);
 
   if (loading) return <p>Cargando productos...</p>;
   if (error) return <p>{error}</p>;
