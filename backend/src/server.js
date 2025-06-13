@@ -14,11 +14,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // middleware "static" + dirname
 app.use(express.static(__dirname + '/public'));
+// Servir las imágenes en Express
 
 // 🔒 Habilitar CORS
 app.use(cors()); // 👈 Esto permite todas las conexiones desde cualquier origen
 
 // routes:
+app.use('/uploads', express.static(__dirname +'/uploads'));
 app.use('/', viewsRouter)
 app.use('/products', productsRouter)
 app.use('/users', usersRouter)

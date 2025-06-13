@@ -13,6 +13,10 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+ image:{
+    type: String,
+    default: null, // Permite que la imagen sea opcional
+  }
 },  { timestamps: true });
 
 export const productsModel = mongoose.model('Products', productSchema);

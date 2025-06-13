@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import './style.css'
+import './style.css';
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -8,12 +8,13 @@ const ProductList = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:3030/products')
-      .then(response => {
+    axios
+      .get('http://localhost:3030/products')
+      .then((response) => {
         setProducts(response.data);
         setLoading(false);
       })
-      .catch(err => {
+      .catch((err) => {
         console.error('Error al traer productos:', err);
         setError('No se pudieron cargar los productos');
         setLoading(false);
@@ -26,9 +27,23 @@ const ProductList = () => {
   return (
     <div>
       <h2>Lista de Productos</h2>
-      {products.map(product => (
-        <div key={product._id} className='product-item'>
-          <strong>{product.prodName}</strong> - ${product.prodPrice} - Stock: {product.prodStock} units.
+      {products.map((product) => (
+        <div key={product._id} className="product-item">
+
+          <div>
+            {product.prodImage && (
+              <img
+                src={`http://localhost:3030/uploads/${product.prodImage}`}
+                alt={product.prodName}
+                className="product-image"
+              />
+            )}
+          </div>
+          
+          <div className="productsDetail">
+            <strong>{product.prodName}</strong> - ${product.prodPrice} - Stock:{' '}
+            {product.prodStock} units.
+          </div>
         </div>
       ))}
     </div>
