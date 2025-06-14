@@ -8,3 +8,7 @@
 .product-item:nth-child(2n) {
     background: rgba(127, 255, 212, 0.5);
 }
+
+.product-image{
+    width: 200px;
+}

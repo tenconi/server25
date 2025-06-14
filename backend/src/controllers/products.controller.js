@@ -1,20 +1,30 @@
-import  ProductsService  from '../services/products.service.js';
+import ProductsService from '../services/products.service.js';
 
 const service = new ProductsService();
 
 class ProductsController {
-
   async create(req, res) {
-    console.log('Body:', req.body);
-    console.log('File:', req.file);
+    // console.log('Body:', req.body);
+    // console.log('File:', req.file);
     // console.log('Datos a guardar en Mongo:', { name, price, stock, image });
 
     try {
-      const { name, price, stock } = req.body;
+      // const { name, price, stock } = req.body;
+      const prodName = req.body.name;
+      const prodPrice = parseFloat(req.body.price);
+      const prodStock = parseInt(req.body.stock, 10);
+
       const image = req.file ? req.file.filename : null;
-      const newProduct = await service.createProduct({ name, price, stock, image });
+
+      // console.log('Guardando producto:', { prodName, prodPrice, prodStock, image });
+
+      const newProduct = await service.createProduct({
+        prodName,
+        prodPrice,
+        prodStock,
+        image,
+      });
       res.status(201).json(newProduct);
-      
     } catch (err) {
       res
         .status(500)
@@ -34,4 +44,4 @@ class ProductsController {
   }
 }
 
-export default ProductsController
+export default ProductsController;

@@ -5,6 +5,7 @@ import usersRouter from './routes/users.router.js';
 import viewsRouter from './routes/views.router.js';
 import './persistence/mongoDB/mongoDB.js'; // Initialize MongoDB connection
 import cors from 'cors'; // a peticion del front
+import { log } from 'console';
 
 const app = express();
 
@@ -20,12 +21,12 @@ app.use(express.static(__dirname + '/public'));
 app.use(cors()); // 👈 Esto permite todas las conexiones desde cualquier origen
 
 // routes:
-app.use('/uploads', express.static(__dirname +'/uploads'));
+app.use('/uploads', express.static(__dirname + '/../uploads'));
 app.use('/', viewsRouter)
 app.use('/products', productsRouter)
 app.use('/users', usersRouter)
 
-
+console.log(__dirname+'/../uploads');
 
 // server
 const PORT = process.env.PORT || 3000;

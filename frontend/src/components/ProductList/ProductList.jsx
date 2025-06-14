@@ -27,19 +27,19 @@ const ProductList = () => {
   return (
     <div>
       <h2>Lista de Productos</h2>
+      
       {products.map((product) => (
         <div key={product._id} className="product-item">
-
           <div>
-            {product.prodImage && (
+            {product.image && (
               <img
-                src={`http://localhost:3030/uploads/${product.prodImage}`}
+                src={`http://localhost:3030/uploads/${product.image}`}
                 alt={product.prodName}
                 className="product-image"
               />
             )}
           </div>
-          
+
           <div className="productsDetail">
             <strong>{product.prodName}</strong> - ${product.prodPrice} - Stock:{' '}
             {product.prodStock} units.
