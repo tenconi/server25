@@ -46,6 +46,12 @@ class ProductsController {
         .json({ error: 'Error al obtener productos', details: err.message });
     }
   }
+
+  async getById(req, res) {
+    const product = await service.getById(req.params.id);
+    if (!product) return res.status(404).json({ msg: 'No encontrado' });
+    res.json(product);
+  }
 }
 
 export default ProductsController;

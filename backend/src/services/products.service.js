@@ -9,5 +9,9 @@ class ProductsService {
   async getAllProducts() {
     return await productsModel.find();
   }
+
+  async getById(id) {
+    return await productsModel.findById(id);
+  }
 }
 export default ProductsService;
