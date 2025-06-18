@@ -4,25 +4,28 @@ import './../TestButtons/Buttons.css';
 import './style.css';
 
 const AddProductForm = () => {
-  const [form, setForm] = useState({
-    name: '',
-    price: '',
-    stock: '',
-    image: null,
-  });
+
+  const [form, setForm] = useState({ prodName: '', prodPrice: '', prodStock: '', images: [] });
+  // const [form, setForm] = useState({name: '', price: '', stock: '', image: null,});
+  
 
   const [message, setMessage] = useState('');
 
   const handleChange = (e) => {
+    // * * * MULTIPLE FILE UPLOAD
     const { name, value, files } = e.target;
-    setForm((prev) => ({
-      ...prev,
-      [name]: files ? files[0] : value,
-    }));
-    // setForm({
-    //   ...form,
-    //   [e.target.name]: e.target.value
-    // });
+    if (name === 'images') {
+      setForm({ ...form, images: Array.from(files) });
+    } else {
+      setForm({ ...form, [name]: value });
+    }
+
+    // * * * SINGLE FILE UPLOAD
+    // const { name, value, files } = e.target;
+    // setForm((prev) => ({
+    //   ...prev,
+    //   [name]: files ? files[0] : value,
+    // }));
   };
 
   const handleSubmit = async (e) => {
@@ -32,9 +35,10 @@ const AddProductForm = () => {
     data.append('name', form.name);
     data.append('price', form.price);
     data.append('stock', form.stock);
-    if(form.image){
-      data.append('image', form.image)}
-      
+    // if (form.image) {
+    //   data.append('image', form.image);
+    // }
+    form.images.forEach(image => data.append('images', image)); // 👈 nombre 'images' (plural)
 
     try {
       // Objeto subido
@@ -82,7 +86,7 @@ const AddProductForm = () => {
         required
       />
 
-      <input name="image" onChange={handleChange} type="file" accept="image/*" />
+      <input type="file" name="images" onChange={handleChange} multiple accept="image/*" />
 
       <button type="submit" className="fillBtn">
         Agregar

@@ -10,19 +10,23 @@ class ProductsController {
 
     try {
       // const { name, price, stock } = req.body;
-      const prodName = req.body.name;
-      const prodPrice = parseFloat(req.body.price);
-      const prodStock = parseInt(req.body.stock, 10);
 
-      const image = req.file ? req.file.filename : null;
+      // * * * multiple file upload * * *
+      const { prodName, prodPrice, prodStock } = req.body;
+      const images = req.files ? req.files.map((file) => file.filename) : [];
 
-      // console.log('Guardando producto:', { prodName, prodPrice, prodStock, image });
+      // * * * single file upload * * *
+      // const prodName = req.body.name;
+      // const prodPrice = parseFloat(req.body.price);
+      // const prodStock = parseInt(req.body.stock, 10);
+
+      // const image = req.file ? req.file.filename : null;
 
       const newProduct = await service.createProduct({
         prodName,
-        prodPrice,
-        prodStock,
-        image,
+        prodPrice: parseFloat(prodPrice),
+        prodStock: parseInt(prodStock, 10),
+        images,
       });
       res.status(201).json(newProduct);
     } catch (err) {

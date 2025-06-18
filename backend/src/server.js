@@ -5,7 +5,6 @@ import usersRouter from './routes/users.router.js';
 import viewsRouter from './routes/views.router.js';
 import './persistence/mongoDB/mongoDB.js'; // Initialize MongoDB connection
 import cors from 'cors'; // a peticion del front
-import { log } from 'console';
 
 const app = express();
 
