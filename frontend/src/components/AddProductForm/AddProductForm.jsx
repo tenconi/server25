@@ -4,10 +4,13 @@ import './../TestButtons/Buttons.css';
 import './style.css';
 
 const AddProductForm = () => {
-
-  const [form, setForm] = useState({ prodName: '', prodPrice: '', prodStock: '', images: [] });
+  const [form, setForm] = useState({
+    prodName: '',
+    prodPrice: '',
+    prodStock: '',
+    images: [],
+  });
   // const [form, setForm] = useState({name: '', price: '', stock: '', image: null,});
-  
 
   const [message, setMessage] = useState('');
 
@@ -38,23 +41,27 @@ const AddProductForm = () => {
     // if (form.image) {
     //   data.append('image', form.image);
     // }
-    form.images.forEach(image => data.append('images', image)); // 👈 nombre 'images' (plural)
+    form.images.forEach((image) => data.append('images', image)); // 👈 nombre 'images' (plural)
 
-    try {
-      // Objeto subido
-      const res = await axios.post('http://localhost:3030/products', data, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-        // prodName: form.name,
-        // prodPrice: parseFloat(form.price),
-        // prodStock: parseInt(form.stock),
-      });
-      console.log('Producto creado:', res.data);
-      setMessage('✅ Producto agregado correctamente');
-      // setForm({ name: '', price: '', stock: '' });
-    } catch (error) {
-      console.error('Error al agregar producto:', error);
-      setMessage('❌ Hubo un error al agregar el producto');
-    }
+    await axios.post('http://localhost:3030/products', data, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+
+    // Objeto subido
+    // try {
+    //   const res = await axios.post('http://localhost:3030/products', data, {
+    //     headers: { 'Content-Type': 'multipart/form-data' },
+    //     prodName: form.name,
+    //     prodPrice: parseFloat(form.price),
+    //     prodStock: parseInt(form.stock),
+    //   });
+    //   console.log('Producto creado:', res.data);
+    //   setMessage('✅ Producto agregado correctamente');
+    //   // setForm({ name: '', price: '', stock: '' });
+    // } catch (error) {
+    //   console.error('Error al agregar producto:', error);
+    //   setMessage('❌ Hubo un error al agregar el producto');
+    // }
   };
 
   return (
@@ -85,6 +92,14 @@ const AddProductForm = () => {
         onChange={handleChange}
         required
       />
+
+      {/* <input
+        type="file"
+        name="images"
+        onChange={handleChange}
+        multiple
+        accept="image/*"
+      /> */}
 
       <input type="file" name="images" onChange={handleChange} multiple accept="image/*" />
 

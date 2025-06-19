@@ -50,7 +50,7 @@ class ProductsController {
   async getById(req, res) {
     const product = await service.getById(req.params.id);
     if (!product) return res.status(404).json({ msg: 'No encontrado' });
-    res.json(product);
+    res.status(200).json(product);
   }
 }
 
