@@ -7,7 +7,7 @@ const router = Router();
 const controller = new ProductsController();
 
 router.get('/', (req, res) => controller.getAll(req, res));
-router.post('/', upload.array('image', 5), (req, res) => controller.create(req, res)); // multiple file upload // "images" debe coincidir con el nombre del input del frontend. El 5 es el número máximo de archivos permitidos.
+router.post('/', upload.array('images', 5), (req, res) => controller.create(req, res)); // multiple file upload // "images" debe coincidir con el nombre del input del frontend. El 5 es el número máximo de archivos permitidos.
 // router.post('/', upload.single('image'), (req, res) => controller.create(req, res)); // single file upload
 
 router.get('/:id', (req, res) => controller.getById(req, res)); 

@@ -13,7 +13,7 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
- image:{
+ images:{
     type: [String],
     default: null, // Permite que la imagen sea opcional
   }

@@ -35,9 +35,9 @@ const AddProductForm = () => {
     e.preventDefault();
 
     const data = new FormData();
-    data.append('name', form.name);
-    data.append('price', form.price);
-    data.append('stock', form.stock);
+    data.append('prodName', form.name);
+    data.append('prodPrice', form.price);
+    data.append('prodStock', form.stock);
     // if (form.image) {
     //   data.append('image', form.image);
     // }

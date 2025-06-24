@@ -20,10 +20,18 @@ const PageDetail = () => {
       <h2>{product.prodName}</h2>
       <p>Precio: ${product.prodPrice}</p>
       <p>Stock: {product.prodStock}</p>
-
+      
+    
       {product.images && product.images.length > 0 && (
-        <ProductCarousel images={product.images} />
+        <ProductCarousel images={product.images} /> 
       )}
+
+      <img
+                src={`http://localhost:3030/uploads/${product.image}`}
+                alt={product.prodName}
+                className="product-image"
+              />
+
     </div>
   );
 };
