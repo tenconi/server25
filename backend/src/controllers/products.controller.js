@@ -52,6 +52,21 @@ class ProductsController {
     if (!product) return res.status(404).json({ msg: 'No encontrado' });
     res.status(200).json(product);
   }
+
+  async deleteById(req, res) {
+
+    try {
+      const product = await service.getById(req.params.id);
+      if (!product) return res.status(404).json({ msg: 'No encontrado' });
+
+      await service.deleteById(req.params.id);
+      res.status(200).json({ msg: 'Producto eliminado' });
+    } catch (err) {
+      res
+        .status(500)
+        .json({ error: 'Error al eliminar producto', details: err.message });
+    }
+  }
 }
 
 export default ProductsController;

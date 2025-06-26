@@ -26,12 +26,13 @@ const ProductList = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div>
+    <div className='productList-main-container'>
       <h2>Lista de Productos</h2>
+      <div className="productList-container">
 
       {products.map((product) => (
         <div key={product._id} className="product-item">
-          <div>
+          <div className='product-image-container'>
             {product.image && (
               <img
                 src={`http://localhost:3030/uploads/${product.image}`}
@@ -50,6 +51,7 @@ const ProductList = () => {
           </Link>
         </div>
       ))}
+      </div>
     </div>
   );
 };

@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import ProductCarousel from '../components/ProductDetail/ProductDetail.jsx';
+import './styles.css'; 
 
 const PageDetail = () => {
   const { id } = useParams();
@@ -17,6 +18,7 @@ const PageDetail = () => {
 
   return (
     <div>
+      <div className="container">
       <h2>{product.prodName}</h2>
       <p>Precio: ${product.prodPrice}</p>
       <p>Stock: {product.prodStock}</p>
@@ -31,7 +33,7 @@ const PageDetail = () => {
                 alt={product.prodName}
                 className="product-image"
               />
-
+    </div>
     </div>
   );
 };

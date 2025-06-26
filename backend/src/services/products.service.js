@@ -13,5 +13,11 @@ class ProductsService {
   async getById(id) {
     return await productsModel.findById(id);
   }
+
+  async deleteById(id) {
+    const product = await productsModel.findByIdAndDelete(id);
+    if (!product) throw new Error('Product not found');
+    return product;
+  }
 }
 export default ProductsService;
