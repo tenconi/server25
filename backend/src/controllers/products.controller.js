@@ -1,4 +1,6 @@
 import ProductsService from '../services/products.service.js';
+import fs from 'fs'; // lo traigo para eliminar img
+import path from 'path'; // lo traigo para eliminar img
 
 const service = new ProductsService();
 
@@ -54,14 +56,25 @@ class ProductsController {
   }
 
   async deleteById(req, res) {
-
     try {
       const product = await service.getById(req.params.id);
       if (!product) return res.status(404).json({ msg: 'No encontrado' });
 
+      // 🧹 Eliminar archivos de imagen del servidor
+      if (product.images && product.images.length > 0) {
+        product.images.forEach((filename) => {
+          const imagePath = path.join(process.cwd(), 'uploads', filename);
+          if (fs.existsSync(imagePath)) {
+            fs.unlinkSync(imagePath); // elimina la imagen
+          }
+        });
+      }
+      // 🗑️ Eliminar producto de la base de datos
       await service.deleteById(req.params.id);
       res.status(200).json({ msg: 'Producto eliminado' });
     } catch (err) {
+      res;
+      console.error('❌ Error al eliminar producto:', err);
       res
         .status(500)
         .json({ error: 'Error al eliminar producto', details: err.message });

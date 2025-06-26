@@ -7,8 +7,35 @@ const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true); // opcional, para feedback
   const [error, setError] = useState(null);
+  
 
+//  Version primera
+  // useEffect(() => {
+  //   axios
+  //     .get('http://localhost:3030/products')
+  //     .then((response) => {
+  //       setProducts(response.data);
+  //       setLoading(false);
+  //     })
+  //     .catch((err) => {
+  //       console.error('Error al traer productos:', err);
+  //       setError('No se pudieron cargar los productos');
+  //       setLoading(false);
+  //     });
+  // }, [products]);
+
+  // if (loading) return <p>Cargando productos...</p>;
+  // if (error) return <p>{error}</p>;
+
+
+// version Segunda
+// Traer productos una sola vez al montar el componente
   useEffect(() => {
+    fetchProducts();
+  }, []);
+
+   const fetchProducts = () => {
+    setLoading(true);
     axios
       .get('http://localhost:3030/products')
       .then((response) => {
@@ -20,10 +47,30 @@ const ProductList = () => {
         setError('No se pudieron cargar los productos');
         setLoading(false);
       });
-  }, [products]);
+  };
+
+  const handleDelete = (productId) => {
+    // Opcional: confirmar antes de eliminar
+    if (!window.confirm('¿Seguro que quieres eliminar este producto?')) return;
+
+    axios
+      .delete(`http://localhost:3030/products/${productId}`)
+      .then(() => {
+        // Quitar producto eliminado del estado
+        setProducts((prevProducts) => 
+          prevProducts.filter((product) => product._id !== productId)
+        );
+      })
+      .catch((err) => {
+        console.error('Error al eliminar producto:', err);
+        alert('No se pudo eliminar el producto');
+      });
+  };
 
   if (loading) return <p>Cargando productos...</p>;
   if (error) return <p>{error}</p>;
+
+
 
   return (
     <div className='productList-main-container'>
@@ -33,9 +80,9 @@ const ProductList = () => {
       {products.map((product) => (
         <div key={product._id} className="product-item">
           <div className='product-image-container'>
-            {product.image && (
+            {product.images && product.images.length > 0 && (
               <img
-                src={`http://localhost:3030/uploads/${product.image}`}
+                src={`http://localhost:3030/uploads/${product.images[0]}`}
                 alt={product.prodName}
                 className="product-image"
               />
@@ -49,6 +96,16 @@ const ProductList = () => {
           <Link to={`/products/${product._id}`} className="product-link">
             Ver Detalle
           </Link>
+
+          <hl></hl>
+
+           <button
+              onClick={() => handleDelete(product._id)}
+              className="delete-button"
+              style={{ marginLeft: '10px' }}
+            >
+              Eliminar
+            </button>
         </div>
       ))}
       </div>
