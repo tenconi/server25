@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './style.css';
 import { Link } from 'react-router-dom';
+import { GoTrash, GoPencil } from 'react-icons/go';
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -70,40 +71,45 @@ const ProductList = () => {
 
   return (
     <div className="productList-main-container">
-      <h2>Lista de Productos</h2>
+      <h2 className='section_title'>Popular products</h2>
+
       <div className="productList-container">
         {products.map((product) => (
           <div key={product._id} className="product-item">
-            <div className="product-image-container">
-              {product.images && product.images.length > 0 && (
-                <img
-                  src={`http://localhost:3030/uploads/${product.images[0]}`}
-                  alt={product.prodName}
-                  className="product-image"
-                />
-              )}
-            </div>
-
-            <div className="productsDetail">
-              <h3>{product.prodName}</h3>
-              
-              <p>${product.prodPrice}</p>
-              <p>Stock: {product.prodStock} units.</p>              
-            </div>
-
             <Link to={`/products/${product._id}`} className="product-link">
-              Ver Detalle
+              <div className="product-image-container">
+                {product.images && product.images.length > 0 && (
+                  <img
+                    src={`http://localhost:3030/uploads/${product.images[0]}`}
+                    alt={product.prodName}
+                    className="product_img"
+                  />
+                )}
+              </div>
+
+              <div className="products_detail">
+                <h3>{product.prodName}</h3>
+
+                <p>${product.prodPrice}</p>
+                <p>Stock: {product.prodStock} units.</p>
+              </div>
             </Link>
 
+            <div className="product_edit_btn">
+              <button
+                onClick={() => handleDelete(product._id)}
+                className="crud_btn"
+              >
+                <GoPencil />
+              </button>
 
-            <button
-              onClick={() => handleDelete(product._id)}
-              className="delete-button"
-              style={{ marginLeft: '10px' }}
-            >
-              Eliminar
-            </button>
-
+              <button
+                onClick={() => handleDelete(product._id)}
+                className="crud_btn"
+              >
+                <GoTrash />
+              </button>
+            </div>
           </div>
         ))}
       </div>

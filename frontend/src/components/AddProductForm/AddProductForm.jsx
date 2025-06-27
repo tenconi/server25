@@ -66,7 +66,7 @@ const AddProductForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="addProductForm">
-      <h2>+ Add Products</h2>
+      <h2 className='add-form_title'>+ Add Products</h2>
 
       <input
         type="text"
