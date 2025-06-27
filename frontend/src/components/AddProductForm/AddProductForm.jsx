@@ -66,7 +66,7 @@ const AddProductForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="addProductForm">
-      <h2>Agregar Producto</h2>
+      <h2>+ Add Products</h2>
 
       <input
         type="text"
