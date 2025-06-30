@@ -35,38 +35,50 @@ const AddProductForm = () => {
     e.preventDefault();
 
     const data = new FormData();
-    data.append('prodName', form.name);
-    data.append('prodPrice', form.price);
-    data.append('prodStock', form.stock);
+    data.append('prodName', form.prodName);
+    data.append('prodPrice', form.prodPrice);
+    data.append('prodStock', form.prodStock);
     // if (form.image) {
     //   data.append('image', form.image);
     // }
     form.images.forEach((image) => data.append('images', image)); // 👈 nombre 'images' (plural)
 
-    await axios.post('http://localhost:3030/products', data, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    });
+    try {
+      await axios.post('http://localhost:3030/products', data, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
 
-    // Objeto subido
-    // try {
-    //   const res = await axios.post('http://localhost:3030/products', data, {
-    //     headers: { 'Content-Type': 'multipart/form-data' },
-    //     prodName: form.name,
-    //     prodPrice: parseFloat(form.price),
-    //     prodStock: parseInt(form.stock),
-    //   });
-    //   console.log('Producto creado:', res.data);
-    //   setMessage('✅ Producto agregado correctamente');
-    //   // setForm({ name: '', price: '', stock: '' });
-    // } catch (error) {
-    //   console.error('Error al agregar producto:', error);
-    //   setMessage('❌ Hubo un error al agregar el producto');
-    // }
+      setMessage('Producto creado con éxito');
+      setForm({
+        prodName: '',
+        prodPrice: '',
+        prodStock: '',
+        images: [],
+      });
+
+      // Objeto subido
+      // try {
+      //   const res = await axios.post('http://localhost:3030/products', data, {
+      //     headers: { 'Content-Type': 'multipart/form-data' },
+      //     prodName: form.name,
+      //     prodPrice: parseFloat(form.price),
+      //     prodStock: parseInt(form.stock),
+      //   });
+      //   console.log('Producto creado:', res.data);
+      //   setMessage('✅ Producto agregado correctamente');
+      //   // setForm({ name: '', price: '', stock: '' });
+      // } catch (error) {
+      //   console.error('Error al agregar producto:', error);
+      //   setMessage('❌ Hubo un error al agregar el producto');
+      // }
+    } catch (error) {
+      console.error('Error al crear producto:', error);
+      setMessage('❌ Error al crear producto');
+    }
   };
-
   return (
     <form onSubmit={handleSubmit} className="addProductForm">
-      <h2 className='add-form_title'>+ Add Products</h2>
+      <h2 className="add-form_title">+ Add Products</h2>
 
       <input
         type="text"
@@ -101,7 +113,13 @@ const AddProductForm = () => {
         accept="image/*"
       /> */}
 
-      <input type="file" name="images" onChange={handleChange} multiple accept="image/*" />
+      <input
+        type="file"
+        name="images"
+        onChange={handleChange}
+        multiple
+        accept="image/*"
+      />
 
       <button type="submit" className="fillBtn">
         Agregar
