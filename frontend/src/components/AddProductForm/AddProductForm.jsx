@@ -15,67 +15,57 @@ const AddProductForm = () => {
   const [message, setMessage] = useState('');
 
   const handleChange = (e) => {
-    // * * * MULTIPLE FILE UPLOAD
+    // * * * MULTIPLE FILES UPLOAD
     const { name, value, files } = e.target;
     if (name === 'images') {
       setForm({ ...form, images: Array.from(files) });
     } else {
       setForm({ ...form, [name]: value });
     }
-
-    // * * * SINGLE FILE UPLOAD
-    // const { name, value, files } = e.target;
-    // setForm((prev) => ({
-    //   ...prev,
-    //   [name]: files ? files[0] : value,
-    // }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const data = new FormData();
-    data.append('prodName', form.prodName);
-    data.append('prodPrice', form.prodPrice);
-    data.append('prodStock', form.prodStock);
+    data.append('prodName', form.name);
+    data.append('prodPrice', form.price);
+    data.append('prodStock', form.stock);
     // if (form.image) {
     //   data.append('image', form.image);
     // }
     form.images.forEach((image) => data.append('images', image)); // 👈 nombre 'images' (plural)
 
     try {
-      await axios.post('http://localhost:3030/products', data, {
+      const res = await axios.post('http://localhost:3030/products', data, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-
-      setMessage('Producto creado con éxito');
-      setForm({
-        prodName: '',
-        prodPrice: '',
-        prodStock: '',
-        images: [],
-      });
-
-      // Objeto subido
-      // try {
-      //   const res = await axios.post('http://localhost:3030/products', data, {
-      //     headers: { 'Content-Type': 'multipart/form-data' },
-      //     prodName: form.name,
-      //     prodPrice: parseFloat(form.price),
-      //     prodStock: parseInt(form.stock),
-      //   });
-      //   console.log('Producto creado:', res.data);
-      //   setMessage('✅ Producto agregado correctamente');
-      //   // setForm({ name: '', price: '', stock: '' });
-      // } catch (error) {
-      //   console.error('Error al agregar producto:', error);
-      //   setMessage('❌ Hubo un error al agregar el producto');
-      // }
+      console.log('Producto creado:', res.data);
+      setMessage('✅ Product add');
     } catch (error) {
-      console.error('Error al crear producto:', error);
-      setMessage('❌ Error al crear producto');
+      console.error('Error al enviar el formulario:', error);
+      setMessage('❌ Error to load the product');
+      return;
     }
+
+
+    // Objeto subido
+    // try {
+    //   const res = await axios.post('http://localhost:3030/products', data, {
+    //     headers: { 'Content-Type': 'multipart/form-data' },
+    //     prodName: form.name,
+    //     prodPrice: parseFloat(form.price),
+    //     prodStock: parseInt(form.stock),
+    //   });
+    //   console.log('Producto creado:', res.data);
+    //   setMessage('✅ Producto agregado correctamente');
+    //   // setForm({ name: '', price: '', stock: '' });
+    // } catch (error) {
+    //   console.error('Error al agregar producto:', error);
+    //   setMessage('❌ Hubo un error al agregar el producto');
+    // }
   };
+
   return (
     <form onSubmit={handleSubmit} className="addProductForm">
       <h2 className="add-form_title">+ Add Products</h2>
