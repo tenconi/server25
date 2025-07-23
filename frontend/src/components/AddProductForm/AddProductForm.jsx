@@ -10,7 +10,6 @@ const AddProductForm = () => {
     prodStock: '',
     images: [],
   });
-  // const [form, setForm] = useState({name: '', price: '', stock: '', image: null,});
 
   const [message, setMessage] = useState('');
 
@@ -47,23 +46,6 @@ const AddProductForm = () => {
       setMessage('❌ Error to load the product');
       return;
     }
-
-
-    // Objeto subido
-    // try {
-    //   const res = await axios.post('http://localhost:3030/products', data, {
-    //     headers: { 'Content-Type': 'multipart/form-data' },
-    //     prodName: form.name,
-    //     prodPrice: parseFloat(form.price),
-    //     prodStock: parseInt(form.stock),
-    //   });
-    //   console.log('Producto creado:', res.data);
-    //   setMessage('✅ Producto agregado correctamente');
-    //   // setForm({ name: '', price: '', stock: '' });
-    // } catch (error) {
-    //   console.error('Error al agregar producto:', error);
-    //   setMessage('❌ Hubo un error al agregar el producto');
-    // }
   };
 
   return (
@@ -94,14 +76,6 @@ const AddProductForm = () => {
         onChange={handleChange}
         required
       />
-
-      {/* <input
-        type="file"
-        name="images"
-        onChange={handleChange}
-        multiple
-        accept="image/*"
-      /> */}
 
       <input
         type="file"

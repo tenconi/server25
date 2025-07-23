@@ -3,6 +3,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./StyleCarousel.css";
 
+
+
 const ProductCarousel = ({ images }) => {
   const settings = {
     dots: true,
@@ -12,8 +14,11 @@ const ProductCarousel = ({ images }) => {
     slidesToScroll: 1
   };
 
+
   return (
     <div style={{ width: '100%', maxWidth: '600px', margin: '0 auto' }}>
+
+
       <Slider {...settings}>
         {images.map((img, idx) => (
           <div key={idx}>
@@ -22,6 +27,7 @@ const ProductCarousel = ({ images }) => {
               alt={`Imagen ${idx}`}
               style={{ width: '100%', maxHeight: '400px', objectFit: 'cover' }}
             />
+
           </div>
         ))}
       </Slider>
