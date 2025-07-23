@@ -35,6 +35,7 @@
 .detailInfo{
     /* background-color: red; */
     grid-area: detailInfo;
+    padding: 1rem;
 }
 .detailImage{
     /* background-color: green; */

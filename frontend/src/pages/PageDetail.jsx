@@ -24,11 +24,11 @@ const PageDetail = () => {
     <div className="container">
       <div className="mainDetail">
         
-
-        <div className="detailInfo">
-          <button onClick={() => navigate(-1)} className="fillBtn backBtn">
+<button onClick={() => navigate(-1)} className="fillBtn backBtn">
           ← Volver
         </button>
+        <div className="detailInfo product-item">
+          
 
           <h2 className='section_title'>{product.prodName}</h2>
           <p>Precio: ${product.prodPrice}</p>
