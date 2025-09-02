@@ -23,17 +23,27 @@ const PageDetail = () => {
   return (
     <div className="container">
       <div className="mainDetail">
-        
-<button onClick={() => navigate(-1)} className="fillBtn backBtn">
+        <button onClick={() => navigate(-1)} className="fillBtn backBtn">
           ← Volver
         </button>
-        <div className="detailInfo product-item">
-          
 
-          <h2 className='section_title'>{product.prodName}</h2>
+        <div className="detailInfo">
+          <h2 className="section_title">{product.prodName}</h2>
           <p>Precio: ${product.prodPrice}</p>
           <p>Stock: {product.prodStock}</p>
-          
+
+          <div className='productSelection'>
+            <button className="btnQty">
+              <p>-</p>
+            </button>
+            <p className="productQty">1</p>
+            <button className="btnQty">
+              <p>+</p>
+            </button>
+
+          <button className='lineBtn'>Add to cart</button>
+          </div>
+
         </div>
 
         <div className="detailImage">
@@ -41,6 +51,7 @@ const PageDetail = () => {
             <ProductCarousel images={product.images} />
           )}
         </div>
+       
       </div>
     </div>
   );
