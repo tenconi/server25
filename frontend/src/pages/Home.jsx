@@ -5,12 +5,16 @@ import LineButton from '../components/TestButtons/LineButton.jsx';
 
 const Home = () => {
   return (
-    <section className="home">
-      <h1>Server '25</h1>
+    <section className="container">
+      <h2>Server '25</h2>
+
+      <div className="jumbo">
+        <h3>Jumbo</h3>
+      </div>
 
 
 
-    <article className="login">
+    {/* <article className="login">
         <h3>Acces</h3>
         <p>Please access to your account.</p>
 
@@ -18,7 +22,7 @@ const Home = () => {
     
     <LineButton legend="register"  url={`http://localhost:3030/users/register`} />
 
-    </article>
+    </article> */}
 
     </section>
   );

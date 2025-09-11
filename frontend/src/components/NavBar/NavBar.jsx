@@ -6,7 +6,7 @@ import './NavBar.css';
 const NavBar = () => {
   return (
     <nav>
-      <h1 className='navLogo'>Logo</h1>
+      <h1 className='navLogo'>Brand ON</h1>
 
       <ul>
         <li>
