@@ -1,7 +1,37 @@
-nav{
-    background-color: aqua;
-    height: 75px;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
+nav {
+  background-color: aquamarine;
+  /* height: 75px; */
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.4rem;
+  padding: 1rem 10%;
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+nav ul a {
+  text-decoration: none;
+  color: #333;
+}
+.navAcces {
+  display: flex;
+  gap: 1rem;
+}
+.navAcces .lineBtn_dark:hover,
+.navAcces .fillBtn_dark:hover {
+ /* background: rgba(255, 255, 255, 0.5); */
+}
+
+.navLogo {
+  color: darkcyan;
 }
