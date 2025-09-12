@@ -7,6 +7,7 @@ import NavBar from './components/NavBar/NavBar.jsx';
 import Register from './pages/Register.jsx';
 import Login from './pages/Login.jsx';
 import Error404 from './pages/Error404.jsx';
+import Footer from './components/Footer/Footer.jsx';
 
 function App() {
   return (
@@ -16,10 +17,13 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/products/:id" element={<PageDetail />} />
+
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        
         <Route path="/*" element={<Error404 />} />
       </Routes>
+      <Footer/>
     </Browser>
   );
 }

@@ -5,15 +5,11 @@
 }
 
 body {
-  color: #fff;
-  background-color: #8de2d2;
+  color: darkcyan;
+background: linear-gradient(0deg, rgb(184, 250, 250), rgb(207, 246, 233));
   /* background: url('./../public/back_leaf.jpg') no-repeat center center fixed ;
   background-size: cover; */
   
-}
-
-.App-link {
-  color: #61dafb;
 }
 
 .section_title{
