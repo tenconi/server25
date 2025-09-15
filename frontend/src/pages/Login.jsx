@@ -7,7 +7,7 @@ const Login = () => {
   return (
     <section className="container">
       <h2>Login:</h2>
-      <h3>Welcome!!</h3>
+      <h3>Welcome to Brand ON!!</h3>
       <br />
 
       <div className='loginDashboard'>
@@ -22,6 +22,9 @@ const Login = () => {
           <div>
             <p>
               Don't have an account? <a href="/register">Register here</a>
+            </p>
+            <p>
+              I forgot my password? <a href="/register">Click here</a>
             </p>
           </div>
         </div>

@@ -7,6 +7,7 @@ import NavBar from './components/NavBar/NavBar.jsx';
 import Register from './pages/Register.jsx';
 import Login from './pages/Login.jsx';
 import Error404 from './pages/Error404.jsx';
+import About from './pages/About.jsx';
 import Footer from './components/Footer/Footer.jsx';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
 
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/about" element={<About />} />
         
         <Route path="/*" element={<Error404 />} />
       </Routes>
