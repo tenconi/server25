@@ -5,17 +5,13 @@ const usersSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  surname: {
-    type: String,
-    required: true,
-  },
   email: {
     type: String,
     required: true,
     unique: true, // No puede haber dos usuarios con el mismo email
   },
-  birthdate: {
-    type: Date,
+  password: {
+    type: String,
     required: true,
   },
   cart: [

@@ -24,6 +24,7 @@ app.use('/uploads', express.static(__dirname + '/../uploads'));
 app.use('/', viewsRouter)
 app.use('/products', productsRouter)
 app.use('/users', usersRouter)
+app.use('/auth', usersRouter) // Rutas de autenticación (registro, login)
 
 console.log(__dirname+'/../uploads');
 
