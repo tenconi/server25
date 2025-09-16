@@ -7,30 +7,49 @@ import { useState } from 'react';
 import axios from 'axios';
 
 const Register = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [repeatPassword, setRepeatPassword] = useState('');
+  // const [name, setName] = useState('');
+  // const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
+  // const [repeatPassword, setRepeatPassword] = useState('');
+  // const [message, setMessage] = useState('');
+
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    password: '',
+    repeatPassword: '',
+  });
+
   const [message, setMessage] = useState('');
+
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (password !== repeatPassword) {
+    // ✅ Validación en frontend
+    if (form.password !== form.repeatPassword) {
       setMessage('❌ Passwords do not match');
       return;
     }
 
     try {
       const res = await axios.post('http://localhost:3030/auth/register', {
-        name,
-        email,
-        password,
+        name: form.name,
+        email: form.email,
+        password: form.password,
       });
-      setMessage('✅ Registration successful!');
+
+      setMessage('✅ Registration successful!' + res.data.message);
+      setForm({ name: '', email: '', password: '', confirmPassword: '' });
     } catch (err) {
       console.error(err);
-      setMessage('❌ Error en registro');
+      setMessage('❌' + (err.response?.data?.message || 'Error en registro'));
     }
   };
 
@@ -40,40 +59,50 @@ const Register = () => {
       <br />
       <div className="registerDashBoard">
         <div className="regDash_column">
-          <form action="post" className="registerForm">
+
+          <form onSubmit={handleSubmit} className="registerForm">
             <input
               type="text"
+              name="name"
               placeholder="Your Name"
               required
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={form.name}
+              // onChange={(e) => setName(e.target.value)}
+              onChange={handleChange}
             />
             <input
               type="email"
+              name="email"
               placeholder="Your Email"
               required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={form.email}
+              // onChange={(e) => setEmail(e.target.value)}
+              onChange={handleChange}
             />
             <input
               type="password"
+              name="password"
               placeholder="Your Password"
               required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={form.password}
+              // onChange={(e) => setPassword(e.target.value)}
+              onChange={handleChange}
             />
             <input
               type="password"
+              name="repeatPassword"
               placeholder="Repeat Password"
               required
-              value={repeatPassword}
-              onChange={(e) => setRepeatPassword(e.target.value)}
+              value={form.repeatPassword}
+              // onChange={(e) => setRepeatPassword(e.target.value)}
+              onChange={handleChange}
             />
 
             <button type="submit" className="fillBtn">
               Register
             </button>
           </form>
+          {message && <p className="message">{message}</p>}
         </div>
 
         <div className="regDash_column">

@@ -9,18 +9,33 @@ const JWT_SECRET = 'your_jwt_secret_key'; // Cambia esto por una clave secreta s
 // register
 router.post('/register', async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, confirmPassword } = req.body;
 
-    // check the user
+    // 1- validation
+    if (!name || !email || !password || !confirmPassword) {
+      return res.status(400).json({ message: 'All fields are required' });
+    }
+    if (password.length < 6) {
+      return res
+        .status(400)
+        .json({ message: 'Password must be at least 6 characters long' });
+    }
+
+    if (password !== confirmPassword) {
+      return res.status(400).json({ message: 'Passwords do not match' });
+    }
+
+    // 2- check the user
     const userExists = await User.findOne({ email });
     if (userExists) {
       return res.status(400).json({ message: 'User already exists' });
     }
 
-    // Encrypt password
-    const hashedPassword = await bcrypt.hash(password, 10);
+    // 3- Encrypt password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
 
-    // create user
+    // 4- create user
     const newUser = new User({
       name,
       email,
