@@ -4,11 +4,13 @@ const usersSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
+    trim: true, //quita espacios blancos al principio
   },
   email: {
     type: String,
     required: true,
     unique: true, // No puede haber dos usuarios con el mismo email
+    lowercase: true,
   },
   password: {
     type: String,
