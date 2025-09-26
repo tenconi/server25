@@ -17,7 +17,7 @@ const Register = () => {
     name: '',
     email: '',
     password: '',
-    repeatPassword: '',
+    confirmPassword: '',
   });
 
   const [message, setMessage] = useState('');
@@ -33,7 +33,7 @@ const Register = () => {
     e.preventDefault();
 
     // ✅ Validación en frontend
-    if (form.password !== form.repeatPassword) {
+    if (form.password !== form.confirmPassword) {
       setMessage('❌ Passwords do not match');
       return;
     }
@@ -43,11 +43,14 @@ const Register = () => {
         name: form.name,
         email: form.email,
         password: form.password,
+        confirmPassword: form.confirmPassword,
       });
 
       setMessage('✅ Registration successful!' + res.data.message);
       setForm({ name: '', email: '', password: '', confirmPassword: '' });
     } catch (err) {
+      console.log(form.password, form.confirmPassword);
+      
       console.error(err);
       setMessage('❌' + (err.response?.data?.message || 'Error en registro'));
     }
@@ -90,10 +93,10 @@ const Register = () => {
             />
             <input
               type="password"
-              name="repeatPassword"
-              placeholder="Repeat Password"
+              name="confirmPassword"
+              placeholder="Confirm Password"
               required
-              value={form.repeatPassword}
+              value={form.confirmPassword}
               // onChange={(e) => setRepeatPassword(e.target.value)}
               onChange={handleChange}
             />
@@ -105,6 +108,7 @@ const Register = () => {
           {message && <p className="message">{message}</p>}
         </div>
 
+        {/* Thirds Party */}
         <div className="regDash_column">
           <h3>Or you can be registered with:</h3>
           <div className="loginPill">

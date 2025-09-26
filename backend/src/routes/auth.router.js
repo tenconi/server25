@@ -13,7 +13,7 @@ router.post('/register', async (req, res) => {
     const { name, email, password, confirmPassword } = req.body;
 
     // 1- validation
-    if (!name || !email || !password || !confirmPassword) {
+    if (name && !name || email && !email || password && !password || confirmPassword && !confirmPassword) {
       return res.status(400).json({ message: 'All fields are required' });
     }
     if (password.length < 6) {
@@ -97,5 +97,6 @@ router.post('/login', async (req, res) => {
     });
   }
 });
+
 
 export default router;

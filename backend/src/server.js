@@ -1,7 +1,7 @@
 import express from 'express';
 import { __dirname } from './utils.js';
 import productsRouter from './routes/products.router.js';
-import usersRouter from './routes/users.router.js';
+import authRouter from './routes/auth.router.js';
 import viewsRouter from './routes/views.router.js';
 import './persistence/mongoDB/mongoDB.js'; // Initialize MongoDB connection
 import cors from 'cors'; // a peticion del front
@@ -23,8 +23,8 @@ app.use(cors()); // 👈 Esto permite todas las conexiones desde cualquier orige
 app.use('/uploads', express.static(__dirname + '/../uploads'));
 app.use('/', viewsRouter)
 app.use('/products', productsRouter)
-app.use('/users', usersRouter)
-app.use('/auth', usersRouter) // Rutas de autenticación (registro, login)
+// app.use('/users', usersRouter)
+app.use('/auth', authRouter) // Rutas de autenticación (registro, login)
 
 console.log(__dirname+'/../uploads');
 
