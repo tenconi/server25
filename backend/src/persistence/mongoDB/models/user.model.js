@@ -16,12 +16,21 @@ const usersSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  role:{
+    type: String,
+    enum: ['user', 'admin'],
+    default: 'user',
+  },
   cart: [
     {
       type: mongoose.Schema.Types.ObjectId, // Referencia al ID del carrito
       ref: 'Cart', // Nombre del modelo de carrito
     },
   ],
+  orders:[{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Order', // Nombre del modelo de ordenes que creamos
+  }]
 
 });
 
